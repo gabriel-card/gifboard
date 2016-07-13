@@ -6,4 +6,4 @@ env:
 install:
   - make install-local
 script:
-  - make test
+  - make test-travis
