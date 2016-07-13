@@ -1,3 +1,5 @@
+# ---- SQL ------
+sqlalchemy==1.0.14
 # ---- FLASK ----
 Jinja2==2.8
 MarkupSafe==0.23
