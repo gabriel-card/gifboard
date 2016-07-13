@@ -1,6 +1,5 @@
 import flask
-
-app = flask.Flask(__name__)
+from configs import app
 
 
 @app.route("/")
@@ -9,12 +8,12 @@ def hello():
 
 
 @app.route("/upload")
-def upload_view:
+def upload_view():
     return "upload_view"
 
 
 @app.route("/tv")
-def gifboard_view:
+def gifboard_view():
     return "gifboard_view"
 
 if __name__ == "__main__":
