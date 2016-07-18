@@ -12,7 +12,6 @@ class ImgLinksModelTestCase(unittest.TestCase):
         Base.metadata.create_all(self.engine)
 
     def tearDown(self):
-        self.session.flush()
         self.session.remove()
 
     def test_create_new_object(self):
