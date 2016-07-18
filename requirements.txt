@@ -1,5 +1,6 @@
 # ---- SQL ------
 sqlalchemy==1.0.14
+sqlalchemy-utils==0.32.9
 # ---- FLASK ----
 Jinja2==2.8
 MarkupSafe==0.23
@@ -26,3 +27,5 @@ traitlets==4.2.2
 wcwidth==0.1.7
 wheel==0.29.0
 wsgiref==0.1.2
+furl==0.5.1
+validators==0.10.3
