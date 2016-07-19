@@ -11,3 +11,7 @@ class RoutesTestCase(unittest.TestCase):
     def test_healthcheck(self):
         response = self.app.get('/healthcheck')
         self.assertEqual(response.status_code, 200)
+
+    def test_homepage(self):
+        response = self.app.get('/')
+        self.assertEqual(response.status_code, 200)

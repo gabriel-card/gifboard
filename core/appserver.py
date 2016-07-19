@@ -6,6 +6,12 @@ from database import db_session, init_db
 init_db()
 
 
+@app.route("/")
+def homepage():
+    return flask.render_template("home.html",
+                                 context=app.config['CUSTOM_WEBSITE'])
+
+
 @app.route("/healthcheck")
 def healthcheck():
     return "OK"
