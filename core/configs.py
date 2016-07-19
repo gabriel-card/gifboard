@@ -5,7 +5,7 @@ import sqlalchemy as sql
 import models
 
 
-app = flask.Flask(__name__)
+app = flask.Flask(__name__, static_url_path='')
 app.config['GIFBOARD_ENV'] = os.getenv('GIFBOARD_ENV', 'local')
 app.config['CLIENT_ID'] = os.getenv('IMGUR_CLIENTID', '')
 app.config['CLIENT_SECRET'] = os.getenv('IMGUR_CLIENTSECRET', '')
