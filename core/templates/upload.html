@@ -3,8 +3,8 @@
 {% block body %}
 <section class="upload">
     <div class="upload__item">
-        <form>
-            <input class="textfield" type="text" placeholder="Insert URL...">
+        <form method="post" action="{{ url_for('board') }}">
+            <input class="textfield" type="text" name="image_url" placeholder="Insert URL...">
             <input class="button" type="submit" value="go">
         </form>
     </div>
