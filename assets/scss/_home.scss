@@ -1,0 +1,41 @@
+section.home {
+  @include display-flex;
+  @include justify-content(center);
+  @include align-items(center);
+  width: 100%;
+  height: 100%;
+
+  a.home__item {
+    @include display-flex;
+    width: 50%;
+    height: 100%;
+    padding: 1em;
+    text-decoration: none;
+    @include transition-property(background-color);
+    @include transition-duration(0.5s);
+
+    &.item--left {
+      @include flex-direction(row-reverse);
+      background-color: $blue;
+
+      &:hover {
+        background-color: $blue-hover;
+      }
+    }
+
+    &.item--right {
+      background-color: $pink;
+
+      &:hover {
+        background-color: $pink-hover;
+      }
+    }
+
+    h1 {
+      @include align-self(center);
+      color: #fff;
+      font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      font-size: 4em;
+    }
+  }
+}
