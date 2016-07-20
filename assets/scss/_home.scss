@@ -33,7 +33,8 @@ section.home {
 
     h1 {
       @include align-self(center);
-      color: #fff;
+      @include user-select(none);
+      color: $white;
       font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
       font-size: 4em;
     }
