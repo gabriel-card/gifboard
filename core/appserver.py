@@ -17,6 +17,13 @@ def board():
     return flask.render_template("board.html",
                                  context=app.config['CUSTOM_WEBSITE'])
 
+
+@app.route("/upload")
+def upload():
+    return flask.render_template("upload.html",
+                                 context=app.config['CUSTOM_WEBSITE'])
+
+
 @app.route("/healthcheck")
 def healthcheck():
     return "OK"
