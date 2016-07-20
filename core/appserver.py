@@ -12,6 +12,11 @@ def homepage():
                                  context=app.config['CUSTOM_WEBSITE'])
 
 
+@app.route("/board")
+def board():
+    return flask.render_template("board.html",
+                                 context=app.config['CUSTOM_WEBSITE'])
+
 @app.route("/healthcheck")
 def healthcheck():
     return "OK"
