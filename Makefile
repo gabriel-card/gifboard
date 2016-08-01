@@ -26,3 +26,6 @@ test-travis: clean
 		--cover-package core \
 		--cover-min-percentage 70 \
 		--cover-inclusive \
+
+run: clean
+	FLASK_DEBUG=0 FLASK_APP=core/appserver.py flask run

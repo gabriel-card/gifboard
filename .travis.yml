@@ -1,9 +1,14 @@
 language: python
 python:
-  - "2.7"
+- '2.7'
 env:
-  - DB=sqlite
+- DB=sqlite
 install:
-  - make install-local
+- make install-local
 script:
-  - make test-travis
+- make test-travis
+deploy:
+  provider: heroku
+  api-key:
+    secure: 9rtiIYyVCMrwmk6cdwzL0uzgOe8juo4f8/VugaeC9AidxEuPRMRORrfKSgPZ9ea3UaezGpIQ5G0MaHDYjCtIXEoicdU8rtH2S66K5RxOOXWrqUTFoY6GvJFWBfE5lXmlfqqepZouzgCfYNOwWBYObr8EOD0I4BSjP9XZDbNMp7lCHcye09UmsLbIHed/w4ARQwG3KkMXq7uEafBRoiUlhpY4nBx7sjy3zamFmNfydFa7Hg2ZrD/I37KDJD6Q26ngT7i8uJSHeCUZ1hDtbXLW9C/yf0DwI3/Yl2FFCNTDinKLO8d3Rxv+vrLFEeVGQPkroZc7NbtT2QHNR4CWetSlfum14+MeZZ/aEo8JLIk5EUKoiTWrxTEU2n4KdrWq5R9s6o7Atrz1QTOBGlGqIGrg2tRqZ5uxiD00XONf3HMk9L+oQMnOWnQjVlfK/FuUDmXo/mgMUhkxqw2dI3OMC4GEzKjwE3TfhyppL1LkNB119FyjIOckgt8OKqs24eTmLmj+Hzkn7bCmPDqH0q6Df3I+xLXrj3v0fznJEOJpQdWYqKGf+d7WunwyfGWUOPuRgGA/i+qss/2/Et7/UsabPJF8GhLVI28oQKHtvA2eb0OzIur5e1dv3y36PHFpnJUCgjMuf0/VOr+Umoi+IOmwEybPfhkKxLXWaVFRKiYv469j39o=
+    app: gbl-gifboard
