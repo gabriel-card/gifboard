@@ -22,4 +22,4 @@ class Image(Base):
         self.link = link
 
     def __repr__(self):
-        return '<Image: %r>' % (self.link)
+        return self.link.url
