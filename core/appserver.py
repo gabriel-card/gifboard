@@ -4,6 +4,7 @@ from configs import app
 from database import db_session, init_db
 from models import Image
 from uploader.client import upload_img_from_url
+from board.view import jsonify_images
 
 init_db()
 
@@ -29,6 +30,11 @@ def board():
 def upload():
     return flask.render_template("upload.html",
                                  context=app.config['CUSTOM_WEBSITE'])
+
+
+@app.route("/gifs.json")
+def gifs():
+    return flask.Response(jsonify_images(), mimetype='application/json')
 
 
 @app.route("/healthcheck")

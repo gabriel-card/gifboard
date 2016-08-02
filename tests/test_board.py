@@ -2,7 +2,7 @@ import unittest
 from sqlalchemy import create_engine
 from core.database import db_session, Base
 from core.models import Image
-from board.view import fetch_images
+from board.view import fetch_images, jsonify_images
 
 
 class GifboardTestCase(unittest.TestCase):
@@ -13,6 +13,12 @@ class GifboardTestCase(unittest.TestCase):
         'http://imgur.com/img3.gif',
         'http://imgur.com/img4.gif',
     ]
+
+    expected_json = '["http://imgur.com/img0.gif", \
+"http://imgur.com/img1.gif", \
+"http://imgur.com/img2.gif", \
+"http://imgur.com/img3.gif", \
+"http://imgur.com/img4.gif"]'
 
     def setUp(self):
         self.engine = create_engine('sqlite:///:memory:', convert_unicode=True)
@@ -31,3 +37,8 @@ class GifboardTestCase(unittest.TestCase):
         '''Call fetch_images to fetch all images from db to a dict.'''
         images = fetch_images()
         self.assertEqual(images, self.expected)
+
+    def test_jsonify_images(self):
+        '''Call jsonify_images to jsonify image list.'''
+        jsonified = jsonify_images()
+        self.assertEqual(jsonified, self.expected_json)
