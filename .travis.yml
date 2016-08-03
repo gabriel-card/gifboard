@@ -4,7 +4,11 @@ python:
 env:
 - DB=sqlite
 install:
-- make install-travis
+- . $HOME/.nvm/nvm.sh
+- nvm install stable
+- nvm use stable
+- npm install
+- make install-dev
 script:
 - make test-travis
 before_deploy:
