@@ -15,7 +15,7 @@ deploy-ready:
 	rm .coverage
 	rm nosetests.xml
 	rm package.json
-	rm Gruntfile
+	rm Gruntfile.js
 
 # dev
 install-dev:
