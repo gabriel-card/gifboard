@@ -11,7 +11,11 @@ deploy-ready:
 	rm -rf node_modules
 	rm -rf assets
 	rm -rf tests
+	rm -rf .sass-cache
+	rm .coverage
+	rm nosetests.xml
 	rm package.json
+	rm Gruntfile
 
 # dev
 install-dev:

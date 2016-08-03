@@ -5,21 +5,18 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
-            options: {
-                separator: 'rn'
-            },
             dist: {
-                src: [], // add every js here
+                src: ['assets/js/_*.js'], // add every js here
                 dest: 'assets/js/main.js'
             }
         },
         uglify: {
             options: {
-                banner: '/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today("dd-mm-yyyy") %&gt; */n'
+                banner: '/* coding: utf-8 <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */'
             },
             dist: {
                 files: {
-                    'core/static/js/main.min.js': ['&lt;%= concat.dist.dest %&gt;']
+                    'core/static/js/main.min.js': ['<%= concat.dist.dest %>']
                 }
             }
         },
@@ -46,12 +43,12 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            files: ['&lt;%= jshint.files %&gt;', 'assets/scss/**/*.scss'],
+            files: ['<%= jshint.files %>', 'assets/scss/**/*.scss'],
             tasks: ['concat', 'uglify', 'jshint', 'compass']
         },
         jasmine: {
             all: {
-                src: 'assets/js/*.js',
+                src: '<%= concat.dist.dest %>',
                 options: {
                     vendor: [
                         'node_modules/jquery/dist/jquery.min.js',
@@ -73,13 +70,7 @@ module.exports = function (grunt) {
                         report: [
                             {type: 'html', options: {dir: 'reports'}},
                             {type: 'text-summary'}
-                        ],
-                        thresholds: {
-                            lines: 80,
-                            statements: 80,
-                            branches: 80,
-                            functions: 90
-                        }
+                        ]
                     }
                 }
             }

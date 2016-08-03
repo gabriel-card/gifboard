@@ -37,8 +37,3 @@
 
     global.Board = Board;
 })(jQuery, window, document);
-
-$(function() {
-    var board = new Board();
-    board.init();
-});
