@@ -28,7 +28,7 @@ test: clean
 		--with-xunit \
 		--with-coverage \
 		--cover-package core \
-		--cover-min-percentage 70 \
+		--cover-min-percentage 80 \
 		--cover-inclusive \
 		--cover-xml \
 		--cover-xml-file reports/cobertura.xml
@@ -40,6 +40,6 @@ test-travis: clean
 		--with-xunit \
 		--with-coverage \
 		--cover-package core \
-		--cover-min-percentage 70 \
+		--cover-min-percentage 80 \
 		--cover-inclusive
 	grunt test

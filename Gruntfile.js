@@ -50,17 +50,40 @@ module.exports = function (grunt) {
             tasks: ['concat', 'uglify', 'jshint', 'compass']
         },
         jasmine: {
-            src: 'assets/js/*.js',
-            options: {
-                vendor: [
-                    'node_modules/jquery/dist/jquery.min.js',
-                    'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
-                ],
-                specs: 'tests/spec/*Spec.js',
-                helpers: 'tests/spec/*Helper.js'
+            all: {
+                src: 'assets/js/*.js',
+                options: {
+                    vendor: [
+                        'node_modules/jquery/dist/jquery.min.js',
+                        'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
+                    ],
+                    specs: 'tests/spec/*Spec.js',
+                    helpers: 'tests/spec/*Helper.js'
+                }
+            },
+            istanbul: {
+                src: '<%= jasmine.all.src %>',
+                options: {
+                    vendor: '<%= jasmine.all.options.vendor %>',
+                    specs: '<%= jasmine.all.options.specs %>',
+                    helpers: '<%= jasmine.all.options.helpers %>',
+                    template: require('grunt-template-jasmine-istanbul'),
+                    templateOptions: {
+                        coverage: 'reports/js-coverage.json',
+                        report: [
+                            {type: 'html', options: {dir: 'reports'}},
+                            {type: 'text-summary'}
+                        ],
+                        thresholds: {
+                            lines: 80,
+                            statements: 80,
+                            branches: 80,
+                            functions: 90
+                        }
+                    }
+                }
             }
         }
-
     });
 
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -69,6 +92,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-contrib-jasmine-istanbul');
     grunt.registerTask('default', ['concat', 'uglify', 'jshint', 'compass', 'watch']);
-    grunt.registerTask('test', ['jshint', 'jasmine']);
+    grunt.registerTask('test', ['jshint', 'jasmine:all', 'jasmine:istanbul']);
 };
