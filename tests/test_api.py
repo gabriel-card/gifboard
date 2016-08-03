@@ -1,8 +1,11 @@
 # coding: utf-8
 import unittest
 import mock
+from sqlalchemy import create_engine
+from uploader.client import upload_img_from_url, save_url
 from core.appserver import app
-from uploader.client import upload_img_from_url
+from core.database import db_session, Base
+from core.models import Image
 
 
 class FakeImgurClient(object):
@@ -19,33 +22,28 @@ class ApiTestCase(unittest.TestCase):
         fake_client_obj = FakeImgurClient()
         self.fake_client.return_value = fake_client_obj
         self.addCleanup(self.fake_client.stop)
+        self.engine = create_engine('sqlite:///:memory:', convert_unicode=True)
+        self.session = db_session
+        self.session.configure(bind=self.engine)
+        Base.metadata.create_all(self.engine)
+
+    def tearDown(self):
+        self.session.remove()
 
     def test_upload_image_from_url(self):
+        '''Should return dict with uploaded image url.'''
         cb = upload_img_from_url(u'http://validurl.com/image.gif')
         expected = {u'link': u'http://i.imgur.com/image.gif'}
 
         self.assertEqual(cb['link'], expected['link'])
 
+    def test_save_imgurl_to_db(self):
+        '''Should save image url to db received from form.'''
+        image_resp = {u'link': u'http://i.imgur.com/image.gif'}
+        expected = Image(image_resp['link'])
+        expected = expected.link
 
-# {u'account_id': 0,
-#  u'account_url': None,
-#  u'animated': False,
-#  u'bandwidth': 0,
-#  u'datetime': 1468859294,
-#  u'deletehash': u'nukm7zJKb7cE8BL',
-#  u'description': None,
-#  u'favorite': False,
-#  u'height': 400,
-#  u'id': u'DpjR2bI',
-#  u'in_gallery': False,
-#  u'is_ad': False,
-#  u'link': u'http://i.imgur.com/DpjR2bI.jpg',
-#  u'name': u'',
-#  u'nsfw': None,
-#  u'section': None,
-#  u'size': 22873,
-#  u'title': None,
-#  u'type': u'image/jpeg',
-#  u'views': 0,
-#  u'vote': None,
-#  u'width': 400}
+        save_url(image_resp)
+        url = Image.query.all()[0].link.url
+
+        self.assertIn(expected, url)
