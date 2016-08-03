@@ -15,8 +15,8 @@ deploy-ready:
 
 # dev
 install-dev:
-	pip install -r requirements-dev.txt
 	npm install --dev
+	pip install -r requirements-dev.txt
 
 testserver: clean
 	FLASK_DEBUG=1 FLASK_APP=core/appserver.py flask run
@@ -32,7 +32,7 @@ test: clean
 		--cover-inclusive \
 		--cover-xml \
 		--cover-xml-file reports/cobertura.xml
-	npm test
+	grunt test
 
 test-travis: clean
 	GIFBOARD_ENV=test nosetests tests \
@@ -42,4 +42,4 @@ test-travis: clean
 		--cover-package core \
 		--cover-min-percentage 70 \
 		--cover-inclusive
-	npm test
+	grunt test

@@ -7,7 +7,7 @@ install:
 - . $HOME/.nvm/nvm.sh
 - nvm install stable
 - nvm use stable
-- npm install --dev
+- npm install grunt-cli -g
 - make install-dev
 script:
 - make test-travis
