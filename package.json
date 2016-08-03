@@ -1,0 +1,26 @@
+{
+  "name": "gifboard",
+  "version": "0.0.1",
+  "description": "Package for the project Gifboard. A simple webapp to upload gifs and visualize them in a TV-friendly environment.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "./node_packages/.bin/jasmine-node spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabriel-card/gifboard.git"
+  },
+  "author": "Gabriel Cardoso",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/gabriel-card/gifboard/issues"
+  },
+  "homepage": "https://github.com/gabriel-card/gifboard#readme",
+  "devDependencies": {
+    "jasmine-jquery": "^2.1.1",
+    "jasmine-node": "^1.14.5"
+  }
+}

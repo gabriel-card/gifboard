@@ -4,9 +4,11 @@ python:
 env:
 - DB=sqlite
 install:
-- make install-local
+- make install-dev
 script:
 - make test-travis
+before_deploy:
+- make deploy-ready
 deploy:
   provider: heroku
   api_key:
