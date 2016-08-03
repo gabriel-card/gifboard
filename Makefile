@@ -9,6 +9,8 @@ run: clean
 
 deploy-ready:
 	rm -rf node_modules
+	rm -rf assets
+	rm -rf tests
 	rm package.json
 
 # dev
