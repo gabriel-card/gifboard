@@ -4,7 +4,7 @@ python:
 env:
 - DB=sqlite
 install:
-- make install-dev
+- make install-travis
 script:
 - make test-travis
 before_deploy:

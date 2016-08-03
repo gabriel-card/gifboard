@@ -21,6 +21,12 @@ testserver: clean
 	FLASK_DEBUG=1 FLASK_APP=core/appserver.py flask run
 
 # testing
+install-travis:
+	. $HOME/.nvm/nvm.sh
+	nvm install stable
+	nvm use stable
+	install-dev
+
 test: clean
 	GIFBOARD_ENV=test nosetests tests \
 		--nocapture \
