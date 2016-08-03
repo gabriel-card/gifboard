@@ -8,3 +8,4 @@ reports/*
 *.pyc
 .grunt
 _SpecRunner.html
+npm-debug.log
