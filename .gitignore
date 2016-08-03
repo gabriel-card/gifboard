@@ -6,3 +6,5 @@ nosetests.xml
 reports/*
 *.db
 *.pyc
+.grunt
+_SpecRunner.html

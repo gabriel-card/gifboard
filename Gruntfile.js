@@ -48,7 +48,19 @@ module.exports = function (grunt) {
         watch: {
             files: ['&lt;%= jshint.files %&gt;', 'assets/scss/**/*.scss'],
             tasks: ['concat', 'uglify', 'jshint', 'compass']
+        },
+        jasmine: {
+            src: 'assets/js/*.js',
+            options: {
+                vendor: [
+                    'node_modules/jquery/dist/jquery.min.js',
+                    'node_modules/jasmine-jquery/lib/jasmine-jquery.js'
+                ],
+                specs: 'tests/spec/*Spec.js',
+                helpers: 'tests/spec/*Helper.js'
+            }
         }
+
     });
 
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -56,5 +68,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.registerTask('default', ['concat', 'uglify', 'jshint', 'compass', 'watch']);
+    grunt.registerTask('test', ['jshint', 'jasmine']);
 };

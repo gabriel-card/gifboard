@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "./node_modules/.bin/jasmine-node spec"
+    "test": "grunt test"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
-    "jasmine-jquery": "^2.1.1"
+    "jasmine-jquery": "^2.1.1",
+    "jquery": "^3.1.0"
   }
 }
