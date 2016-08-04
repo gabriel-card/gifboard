@@ -9,6 +9,15 @@ describe('Board', function() {
         expect(this.board).toBeTruthy();
     });
 
+    describe('init', function() {
+        it('should call getJson', function() {
+            spyOn(this.board, 'getJson');
+            this.board.init();
+
+            expect(this.board.getJson).toHaveBeenCalled();
+        });
+    });
+
     describe('json handling', function() {
         it('should call loadGifs if ajax succeeded', function() {
             spyOn($, 'ajax').and.callFake(function(e) {

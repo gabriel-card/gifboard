@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             dist: {
-                src: ['assets/js/_*.js'], // add every js here
+                src: ['assets/js/_board.js', 'assets/js/_main.js'], // add every js here
                 dest: 'assets/js/main.js'
             }
         },
@@ -70,7 +70,13 @@ module.exports = function (grunt) {
                         report: [
                             {type: 'html', options: {dir: 'reports'}},
                             {type: 'text-summary'}
-                        ]
+                        ],
+                        thresholds: {
+                            statements: 75,
+                            branches: 75,
+                            functions: 90,
+                            lines: 75
+                        }
                     }
                 }
             }

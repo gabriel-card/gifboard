@@ -32,10 +32,14 @@ test: clean
 		--with-xunit \
 		--with-coverage \
 		--cover-package core \
+		--cover-package board \
+		--cover-package uploader \
 		--cover-min-percentage 80 \
 		--cover-inclusive \
 		--cover-xml \
 		--cover-xml-file reports/cobertura.xml
+
+test-full: test
 	grunt test
 
 test-travis: clean
