@@ -71,7 +71,7 @@
 })(jQuery, window, document);
 
 $(function() {
-    var board = new Board($('div.board'));
+    var board = new Board($('section.board'));
     var imageFetcher = new ImageFetcher(board);
     imageFetcher.init();
 });

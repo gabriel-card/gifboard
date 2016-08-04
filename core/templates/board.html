@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block title %} - Board{% endblock %}
 {% block body %}
-<section>
-    <div class="board"></div>
+<section class="board">
+    <div class="board__image image--father">
+        <div class="board__image image--child"></div>
+    </div>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="{{ url_for('static', filename='js/main.min.js') }}"></script>
