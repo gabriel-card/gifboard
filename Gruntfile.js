@@ -84,5 +84,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.registerTask('default', ['concat', 'uglify', 'jshint', 'compass', 'watch']);
-    grunt.registerTask('test', ['jshint', 'jasmine:all', 'jasmine:istanbul']);
+    grunt.registerTask('test', ['jshint', 'jasmine:istanbul']);
 };

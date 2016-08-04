@@ -1,8 +1,8 @@
 describe('Board', function() {
-    // jasmine.getFixtures().fixturesPath = 'tests/spec/fixtures';
+    jasmine.getJSONFixtures().fixturesPath = 'tests/spec/fixtures';
     beforeEach(function() {
         this.board = new Board();
-        // this.gifsJson = loadFixtures('gifs.json');
+        this.gifsJson = getJSONFixture('gifs.json');
     });
 
     it('should not be falsy', function(){
@@ -31,13 +31,13 @@ describe('Board', function() {
             expect(console.log).toHaveBeenCalled();
         });
 
-        // describe('loadGifs', function() {
-        //     it('should return array of gifs',function(){
-        //         gifs = this.board.loadGifs(this.gifsJson);
-        //         expected = ["http://i.imgur.com/Ah3Fnc6.jpg", "http://i.imgur.com/wrdlaJW.jpg"];
+        describe('loadGifs', function() {
+            it('should return array of gifs',function(){
+                gifs = this.board.loadGifs(this.gifsJson);
+                expected = ["http://i.imgur.com/Ah3Fnc6.jpg", "http://i.imgur.com/wrdlaJW.jpg"];
 
-        //         expect(gifs).toEqual(expected);
-        //     });
-        // });
+                expect(gifs).toEqual(expected);
+            });
+        });
     });
 });
