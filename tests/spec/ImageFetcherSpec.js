@@ -28,16 +28,19 @@ describe('ImageFetcher', function() {
                 });
             });
 
-            it('should put gifs array in localStorage if ajax succeeded', function() {
+            it('should call saveJson', function() {
                 spyOn(localStorage, 'setItem');
-                spyOn(this.imageFetcher.board, 'init');
+                spyOn(this.imageFetcher, 'saveJson');
                 this.imageFetcher.getJson(this.imageFetcher.jsonConfig);
 
-                expect(localStorage.setItem).toHaveBeenCalled();
+                expect(this.imageFetcher.saveJson).toHaveBeenCalled();
             });
 
-            it('should call board.init if ajax succeeded', function() {
+            it('should call board.init if saveJson returns true', function() {
                 spyOn(this.imageFetcher.board, 'init');
+                spyOn(this.imageFetcher, 'saveJson').and.callFake(function() {
+                    return true;
+                });
 
                 this.imageFetcher.getJson(this.imageFetcher.jsonConfig);
                 expect(this.imageFetcher.board.init).toHaveBeenCalled();
