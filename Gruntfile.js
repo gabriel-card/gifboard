@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             dist: {
-                src: ['assets/js/_board.js', 'assets/js/_main.js'], // add every js here
+                src: ['assets/js/_imageFetcher.js', 'assets/js/_main.js'], // add every js here
                 dest: 'assets/js/main.js'
             }
         },
@@ -21,7 +21,7 @@ module.exports = function (grunt) {
             }
         },
         jshint: {
-            files:['Gruntfile.js', 'assets/js/*.js', 'static/js/*.js'],
+            files:['Gruntfile.js', 'assets/js/*.js'],
             options: {
                 globals: {
                     jQuery: true,

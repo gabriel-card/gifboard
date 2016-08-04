@@ -29,8 +29,3 @@
 
     global.ImageFetcher = ImageFetcher;
 })(jQuery, window, document);
-
-$(function() {
-    var imageFetcher = new ImageFetcher();
-    imageFetcher.init();
-});
