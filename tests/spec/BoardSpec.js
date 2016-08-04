@@ -1,9 +1,11 @@
 describe('Board', function() {
     jasmine.getJSONFixtures().fixturesPath = 'tests/spec/fixtures';
+    jasmine.getFixtures().fixturesPath = 'tests/spec/fixtures';
 
     beforeEach(function() {
-        this.imageFetcher = new ImageFetcher();
-        this.board = new Board();
+        this.dom = loadFixtures('board.html');
+        this.board = new Board($('section.board'));
+        this.imageFetcher = new ImageFetcher(this.board);
         this.gifsJson = getJSONFixture('gifs.json');
 
         this.imageFetcher.init();

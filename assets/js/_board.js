@@ -2,6 +2,8 @@
 
     function Board(element) {
         this.container = element;
+        this.father = element.find('div.image--father');
+        this.child = this.father.find('div.image--child');
     }
 
     Board.prototype.init = function() {
