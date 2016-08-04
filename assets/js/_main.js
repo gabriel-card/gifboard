@@ -1,4 +1,5 @@
 $(function() {
-    var imageFetcher = new ImageFetcher();
+    var board = new Board($('div.board'));
+    var imageFetcher = new ImageFetcher(board);
     imageFetcher.init();
 });

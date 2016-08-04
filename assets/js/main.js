@@ -4,8 +4,9 @@
         remainingCallTime: 30000
     };
 
-    function ImageFetcher() {
+    function ImageFetcher(board) {
         this.jsonConfig = jsonConfig;
+        this.board = board;
     }
 
     ImageFetcher.prototype.init = function() {
@@ -18,7 +19,12 @@
             url: config.url,
             dataType: 'json',
             success: function(data) {
-                localStorage.setItem('gifboard_images', JSON.stringify(data));
+                var newImages = self.saveJson(data);
+                if(newImages) {
+                    self.board.init();
+                } else {
+                    console.log('No image updates.');
+                }
             },
             error: function(error) {
                 console.log(error);
@@ -27,10 +33,45 @@
         });
     };
 
+    ImageFetcher.prototype.saveJson = function(data) {
+        var cache = localStorage.getItem('gifboard_images');
+        var dataString = JSON.stringify(data);
+        var res = false;
+
+        if(cache != dataString) {
+            localStorage.setItem('gifboard_images', dataString);
+            res = true;
+        }
+        return res;
+    };
+
     global.ImageFetcher = ImageFetcher;
 })(jQuery, window, document);
 
+(function($, global, document, undefined) {
+
+    function Board(element) {
+        this.container = element;
+    }
+
+    Board.prototype.init = function() {
+        images = this.parseImages(localStorage.getItem('gifboard_images'));
+        this.renderImages(images);
+    };
+
+    Board.prototype.parseImages = function(stringImages) {
+        return JSON.parse(stringImages);
+    };
+
+    Board.prototype.renderImages = function(images) {
+
+    };
+
+    global.Board = Board;
+})(jQuery, window, document);
+
 $(function() {
-    var imageFetcher = new ImageFetcher();
+    var board = new Board($('div.board'));
+    var imageFetcher = new ImageFetcher(board);
     imageFetcher.init();
 });
