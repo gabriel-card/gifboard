@@ -4,10 +4,15 @@ describe('Main', function() {
     beforeEach(function() {
         loadFixtures('board.html');
     });
-    it('should create a Board instance', function(){
-        spyOn(window, 'Board');
+    it('should create a Board instance', function() {
+        spyOn(window, 'Board').and.callFake(function(element) {
+            this.element = element;
+            this.init = function() {
+                return true;
+            };
+        });
         main();
-        expect(window.Board).toHaveBeenCalled();
+        expect(window.Board).toHaveBeenCalledWith($('section.board'));
     });
 
     it('should create an ImageFetcher instance with Board as argument', function() {
@@ -17,7 +22,7 @@ describe('Main', function() {
                 return true;
             };
         });
-        spyOn(window, 'Board').and.callFake(function () {
+        spyOn(window, 'Board').and.callFake(function() {
             return $('section.board');
         });
         main();
