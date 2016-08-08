@@ -7,16 +7,6 @@ install:
 run: clean
 	FLASK_DEBUG=0 FLASK_APP=core/appserver.py flask run
 
-deploy-ready:
-	rm -rf node_modules
-	rm -rf assets
-	rm -rf tests
-	rm -rf .sass-cache
-	rm .coverage
-	rm nosetests.xml
-	rm package.json
-	rm Gruntfile.js
-
 # dev
 install-dev:
 	npm install --dev
@@ -42,6 +32,10 @@ test: clean
 test-full: test
 	grunt test
 
+# travis
+coveralls:
+	grunt coveralls
+
 test-travis: clean
 	GIFBOARD_ENV=test nosetests tests \
 		--nocapture \
@@ -51,3 +45,13 @@ test-travis: clean
 		--cover-min-percentage 80 \
 		--cover-inclusive
 	grunt test
+
+deploy-ready:
+	rm -rf node_modules
+	rm -rf assets
+	rm -rf tests
+	rm -rf .sass-cache
+	rm .coverage
+	rm nosetests.xml
+	rm package.json
+	rm Gruntfile.js

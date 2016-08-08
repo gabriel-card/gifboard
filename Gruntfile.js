@@ -69,6 +69,7 @@ module.exports = function (grunt) {
                         coverage: 'reports/js-coverage.json',
                         report: [
                             {type: 'html', options: {dir: 'reports'}},
+                            {type: 'lcov', options: {dir: 'reports/lcov'}},
                             {type: 'text-summary'}
                         ],
                         thresholds: {
@@ -80,6 +81,14 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+        coveralls: {
+            options: {
+                force: true // dont fail if coveralls fails
+            },
+            main_target: {
+                src: "reports/lcov/lcov.info"
+            }
         }
     });
 
@@ -89,6 +98,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-coveralls');
     grunt.registerTask('default', ['concat', 'uglify', 'jshint', 'compass', 'watch']);
     grunt.registerTask('test', ['jshint', 'jasmine:istanbul']);
 };

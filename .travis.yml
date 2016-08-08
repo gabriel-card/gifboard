@@ -11,6 +11,7 @@ install:
 - make install-dev
 script:
 - make test-travis
+- make coveralls
 before_deploy:
 - make deploy-ready
 deploy:
