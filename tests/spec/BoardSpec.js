@@ -3,7 +3,7 @@ describe('Board', function() {
     jasmine.getFixtures().fixturesPath = 'tests/spec/fixtures';
 
     beforeEach(function() {
-        this.dom = loadFixtures('board.html');
+        loadFixtures('board.html');
         this.board = new Board($('section.board'));
         this.imageFetcher = new ImageFetcher(this.board);
         this.gifsJson = getJSONFixture('gifs.json');
@@ -41,6 +41,34 @@ describe('Board', function() {
     });
 
     describe('renderImages', function() {
-        it('should set div.board background-image as ');
+        it('should set div.image--child background-image', function() {
+            spyOn(this.board, 'randomInt');
+            spyOn(this.board.child, 'css');
+            this.board.renderImages(this.gifsJson);
+
+            expect(this.board.randomInt).toHaveBeenCalled();
+            expect(this.board.child.css).toHaveBeenCalled();
+        });
+        it('should set div.image--father background-image', function() {
+            spyOn(this.board, 'randomInt');
+            spyOn(this.board.father, 'css');
+            this.board.renderImages(this.gifsJson);
+
+            expect(this.board.randomInt).toHaveBeenCalled();
+            expect(this.board.father.css).toHaveBeenCalled();
+        });
+
+        it('should never have fatherIndex and childIndex as the same int', function() {
+            this.board.renderImages(this.gifsJson);
+            expect(this.board.childIndex).not.toEqual(this.board.fatherIndex);
+        });
+
+        it("should set fatherIndex to 0 if it's equal or higher than image list length", function() {
+            spyOn(this.board, 'randomInt').and.callFake(function() {
+                return 1; // image list length = 2
+            });
+            this.board.renderImages(this.gifsJson);
+            expect(this.board.fatherIndex).toBe(0);
+        });
     });
 });
