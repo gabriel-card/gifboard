@@ -1,5 +1,5 @@
 # Gifboard
-[![Build Status](https://travis-ci.org/gabriel-card/gifboard.svg?branch=master)](https://travis-ci.org/gabriel-card/gifboard)[![Coverage Status](https://coveralls.io/repos/github/gabriel-card/gifboard/badge.svg)](https://coveralls.io/github/gabriel-card/gifboard)
+[![Build Status](https://travis-ci.org/gabriel-card/gifboard.svg?branch=master)](https://travis-ci.org/gabriel-card/gifboard) [![Coverage Status](https://coveralls.io/repos/github/gabriel-card/gifboard/badge.svg)](https://coveralls.io/github/gabriel-card/gifboard)
 ## About
 Gifboard is a tiny project that you can upload images and gifs and visualize them in an URL as a presentation (perfect for TVs). This readme will cover all you need setup a development environment for this project. Everything else will be documented as we release 1.0.0.
 
