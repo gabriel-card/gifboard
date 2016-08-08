@@ -5,7 +5,7 @@ python:
 env:
 - DB=sqlite
 install:
-- apt-get install -y lcov
+- sudo apt-get install -y lcov
 - gem install coveralls-lcov
 - . $HOME/.nvm/nvm.sh
 - nvm install stable
