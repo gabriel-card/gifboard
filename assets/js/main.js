@@ -85,10 +85,13 @@
     global.Board = Board;
 })(jQuery, window, document);
 
+var fetchInit = function(imgFetch) {
+    imgFetch.init();
+};
 var main = function() {
     var board = new Board($('section.board'));
     board.init();
     var imgFetch = new ImageFetcher(board);
-    imgFetch.init();
+    setInterval(fetchInit, 3000, imgFetch);
 };
 $(main);

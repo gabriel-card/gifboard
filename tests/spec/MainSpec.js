@@ -28,4 +28,14 @@ describe('Main', function() {
         main();
         expect(window.ImageFetcher).toHaveBeenCalledWith($('section.board'));
     });
+
+    // describe('fetchInit', function() {
+    //     it('should init imgFetcher', function() {
+    //         spyOn(window.ImageFetcher.prototype, 'init').and.callFake(function() {
+    //             return true;
+    //         });
+    //         fetchInit();
+    //         expect(window.ImageFetcher.prototype.init).toHaveBeenCalled();
+    //     });
+    // });
 });
