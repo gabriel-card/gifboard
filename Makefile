@@ -34,7 +34,8 @@ test-full: test
 
 # travis
 coveralls:
-	grunt coveralls
+	coveralls-lcov -v -n reports/lcov/lcov.info > reports/lcov/coverage.json
+	coveralls --merge=reports/lcov/coverage.json
 
 test-travis: clean
 	GIFBOARD_ENV=test nosetests tests \

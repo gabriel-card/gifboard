@@ -1,16 +1,22 @@
+sudo: required
 language: python
 python:
 - '2.7'
 env:
 - DB=sqlite
 install:
+- apt-get install -y lcov
+- gem install coveralls-lcov
 - . $HOME/.nvm/nvm.sh
 - nvm install stable
 - nvm use stable
 - npm install grunt-cli -g
 - make install-dev
+before_script:
+- ./autogen.sh
 script:
 - make test-travis
+after_success:
 - make coveralls
 before_deploy:
 - make deploy-ready
