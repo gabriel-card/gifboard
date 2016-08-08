@@ -72,8 +72,9 @@
     global.Board = Board;
 })(jQuery, window, document);
 
-$(function() {
+var main = function() {
     var board = new Board($('section.board'));
-    var imageFetcher = new ImageFetcher(board);
-    imageFetcher.init();
-});
+    var imgFetch = new ImageFetcher(board);
+    imgFetch.init();
+};
+$(main);
