@@ -29,13 +29,14 @@ describe('Main', function() {
         expect(window.ImageFetcher).toHaveBeenCalledWith($('section.board'));
     });
 
-    // describe('fetchInit', function() {
-    //     it('should init imgFetcher', function() {
-    //         spyOn(window.ImageFetcher.prototype, 'init').and.callFake(function() {
-    //             return true;
-    //         });
-    //         fetchInit();
-    //         expect(window.ImageFetcher.prototype.init).toHaveBeenCalled();
-    //     });
-    // });
+    describe('fetchInit', function() {
+        it('should init imgFetcher', function() {
+            spyOn(window.ImageFetcher.prototype, 'init').and.callFake(function() {
+                return true;
+            });
+            imgFetch = new ImageFetcher($('section.board'));
+            fetchInit(imgFetch);
+            expect(imgFetch.init).toHaveBeenCalled();
+        });
+    });
 });
