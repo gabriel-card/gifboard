@@ -18,6 +18,7 @@ after_success:
 - make coveralls
 before_deploy:
 - make deploy-ready
+- export PATH="$PATH:$HOME/.rvm/bin"
 deploy:
   skip_cleanup: true
   provider: heroku
