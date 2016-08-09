@@ -1,20 +1,25 @@
 section.board {
-  @include display-flex;
-  @include justify-content(center);
-  @include align-items(center);
   width: 100%;
   height: 100%;
 
   div.board__image {
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 100%;
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
     @include transition-property(opacity, visibility);
     @include transition-duration(0.5s);
   }
   div.image--father {
     opacity: 0;
     visibility: hidden;
+    z-index: 1;
+  }
+  div.image--child {
+    z-index: 2;
   }
 }

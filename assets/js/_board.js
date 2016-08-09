@@ -2,8 +2,8 @@
 
     function Board(element) {
         this.container = element;
-        this.father = element.find('div.image--father');
-        this.child = this.father.find('div.image--child');
+        this.father = this.container.find('div.image--father');
+        this.child = this.container.find('div.image--child');
         this.childIndex = false;
         this.fatherIndex = false;
     }
