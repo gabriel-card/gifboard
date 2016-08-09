@@ -109,4 +109,16 @@ describe('Board', function() {
             expect(this.board.fatherIndex).toBe(0);
         });
     });
+
+    describe('updateImages', function() {
+        it('should set this.images with new list', function() {
+            this.board.images = [];
+            spyOn(localStorage, 'getItem').and.callFake(function() {
+                return '["a", "b"]';
+            });
+            this.board.updateImages();
+
+            expect(this.board.images).toEqual(['a', 'b']);
+        });
+    });
 });
