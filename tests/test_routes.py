@@ -28,7 +28,7 @@ class RoutesTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_post_board(self):
-        response = self.app.post('/board', data=dict(
+        response = self.app.post('/upload', data=dict(
             image_url='http://imgur.com/test.gif'
         ))
         self.fake_img_from_url.assert_called_once_with(

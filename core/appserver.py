@@ -17,15 +17,15 @@ def homepage():
 
 @app.route("/board", methods=["POST", "GET"])
 def board():
-    if flask.request.method == "POST":
-        img_resp = upload_img_from_url(flask.request.form["image_url"])
-        save_url(img_resp)
     return flask.render_template("board.html",
                                  context=app.config['CUSTOM_WEBSITE'])
 
 
-@app.route("/upload")
+@app.route("/upload", methods=["POST", "GET"])
 def upload():
+    if flask.request.method == "POST":
+        img_resp = upload_img_from_url(flask.request.form["image_url"])
+        save_url(img_resp)
     return flask.render_template("upload.html",
                                  context=app.config['CUSTOM_WEBSITE'])
 
