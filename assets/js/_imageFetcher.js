@@ -21,7 +21,7 @@
             success: function(data) {
                 var newImages = self.saveJson(data);
                 if(newImages) {
-                    self.board.init();
+                    self.board.updateImages();
                 } else {
                     console.log('No image updates.');
                 }

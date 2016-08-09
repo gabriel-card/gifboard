@@ -21,7 +21,7 @@
             success: function(data) {
                 var newImages = self.saveJson(data);
                 if(newImages) {
-                    self.board.init();
+                    self.board.updateImages();
                 } else {
                     console.log('No image updates.');
                 }
@@ -54,17 +54,23 @@
         this.container = element;
         this.father = this.container.find('div.image--father');
         this.child = this.container.find('div.image--child');
+        this.images = [];
         this.childIndex = false;
         this.fatherIndex = false;
+        this.config = { animationInterval: 15000 };
     }
 
     Board.prototype.init = function() {
-        images = this.parseImages(localStorage.getItem('gifboard_images'));
-        this.renderImages(images);
+        this.updateImages();
+        setInterval(this.renderImages, this.config.animationInterval, this.images);
     };
 
     Board.prototype.parseImages = function(stringImages) {
-        return JSON.parse(stringImages);
+        return JSON.parse(stringImages) || [];
+    };
+
+    Board.prototype.updateImages = function() {
+        this.images = this.parseImages(localStorage.getItem('gifboard_images'));
     };
 
     Board.prototype.renderImages = function(images) {

@@ -36,14 +36,14 @@ describe('ImageFetcher', function() {
                 expect(this.imageFetcher.saveJson).toHaveBeenCalled();
             });
 
-            it('should call board.init if saveJson returns true', function() {
-                spyOn(this.imageFetcher.board, 'init');
+            it('should call board.updateImages if saveJson returns true', function() {
+                spyOn(this.imageFetcher.board, 'updateImages');
                 spyOn(this.imageFetcher, 'saveJson').and.callFake(function() {
                     return true;
                 });
 
                 this.imageFetcher.getJson(this.imageFetcher.jsonConfig);
-                expect(this.imageFetcher.board.init).toHaveBeenCalled();
+                expect(this.imageFetcher.board.updateImages).toHaveBeenCalled();
             });
 
             it('should call console.log if saveJson returns false', function() {
