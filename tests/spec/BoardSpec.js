@@ -41,6 +41,14 @@ describe('Board', function() {
     });
 
     describe('renderImages', function() {
+        it('should print to console if there is no image list', function() {
+            spyOn(console, 'log');
+            spyOn(this.board.child, 'css');
+            this.board.renderImages([]);
+
+            expect(this.board.child.css).not.toHaveBeenCalled();
+            expect(console.log).toHaveBeenCalled();
+        });
         it('should set div.image--child background-image', function() {
             spyOn(this.board, 'randomInt');
             spyOn(this.board.child, 'css');

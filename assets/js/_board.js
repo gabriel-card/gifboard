@@ -18,6 +18,9 @@
     };
 
     Board.prototype.renderImages = function(images) {
+        if(!images.length) {
+            return console.log('no images to be displayed!');
+        }
         if(this.childIndex !== false) {
             this.childIndex++;
             if(this.childIndex >= images.length) {
@@ -27,7 +30,6 @@
             this.childIndex = this.randomInt(0, images.length - 1);
         }
         this.fatherIndex = this.childIndex + 1;
-
         if(this.fatherIndex >= images.length) {
             this.fatherIndex = 0;
         }
