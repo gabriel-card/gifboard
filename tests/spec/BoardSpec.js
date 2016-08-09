@@ -27,7 +27,7 @@ describe('Board', function() {
 
             expect(localStorage.getItem).toHaveBeenCalled();
             expect(this.board.parseImages).toHaveBeenCalledWith(localStorage.getItem());
-            expect(window.setInterval).toHaveBeenCalledWith(this.board.renderImages, this.board.config.animationInterval, this.board.images);
+            expect(window.setInterval).toHaveBeenCalledWith(this.board.renderImages, this.board.config.animationInterval, this.board.images, this.board);
         });
     });
 
@@ -52,7 +52,7 @@ describe('Board', function() {
         it('should set div.image--child background-image', function() {
             spyOn(this.board, 'randomInt');
             spyOn(this.board.child, 'css');
-            this.board.renderImages(this.gifsJson);
+            this.board.renderImages(this.gifsJson, this.board);
 
             expect(this.board.randomInt).toHaveBeenCalled();
             expect(this.board.child.css).toHaveBeenCalled();
@@ -60,7 +60,7 @@ describe('Board', function() {
         it('should set div.image--father background-image', function() {
             spyOn(this.board, 'randomInt');
             spyOn(this.board.father, 'css');
-            this.board.renderImages(this.gifsJson);
+            this.board.renderImages(this.gifsJson, this.board);
 
             expect(this.board.randomInt).toHaveBeenCalled();
             expect(this.board.father.css).toHaveBeenCalled();
@@ -70,7 +70,7 @@ describe('Board', function() {
             this.board.childIndex = false;
             this.board.fatherIndex = false;
             spyOn(this.board, 'randomInt');
-            this.board.renderImages(this.gifsJson);
+            this.board.renderImages(this.gifsJson, this.board);
 
             expect(this.board.randomInt).toHaveBeenCalled();
         });
@@ -79,7 +79,7 @@ describe('Board', function() {
             this.board.childIndex = 0;
             this.board.fatherIndex = 1;
             spyOn(this.board, 'randomInt');
-            this.board.renderImages(this.gifsJson);
+            this.board.renderImages(this.gifsJson, this.board);
 
             expect(this.board.randomInt).not.toHaveBeenCalled();
             expect(this.board.childIndex).toBe(1);
@@ -89,7 +89,7 @@ describe('Board', function() {
         it('should set childIndex to 0 if childIndex is equal or greater than list length', function() {
             this.board.childIndex = 1;
             spyOn(this.board, 'randomInt');
-            this.board.renderImages(this.gifsJson);
+            this.board.renderImages(this.gifsJson, this.board);
 
             expect(this.board.randomInt).not.toHaveBeenCalled();
             expect(this.board.childIndex).toBe(0);
@@ -97,7 +97,7 @@ describe('Board', function() {
         });
 
         it('should never have fatherIndex and childIndex as the same int', function() {
-            this.board.renderImages(this.gifsJson);
+            this.board.renderImages(this.gifsJson, this.board);
             expect(this.board.childIndex).not.toEqual(this.board.fatherIndex);
         });
 
@@ -105,7 +105,7 @@ describe('Board', function() {
             spyOn(this.board, 'randomInt').and.callFake(function() {
                 return 1; // image list length = 2
             });
-            this.board.renderImages(this.gifsJson);
+            this.board.renderImages(this.gifsJson, this.board);
             expect(this.board.fatherIndex).toBe(0);
         });
     });

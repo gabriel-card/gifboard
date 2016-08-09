@@ -52,17 +52,18 @@
 
     function Board(element) {
         this.container = element;
-        this.father = this.container.find('div.image--father');
-        this.child = this.container.find('div.image--child');
+        this.father = element.find('.board__image.image--father');
+        this.child = element.find('.board__image.image--child');
         this.images = [];
         this.childIndex = false;
         this.fatherIndex = false;
-        this.config = { animationInterval: 15000 };
+        this.config = { animationInterval: 4000 };
     }
 
     Board.prototype.init = function() {
         this.updateImages();
-        setInterval(this.renderImages, this.config.animationInterval, this.images);
+        var self = this;
+        setInterval(this.renderImages, this.config.animationInterval, this.images, self);
     };
 
     Board.prototype.parseImages = function(stringImages) {
@@ -73,25 +74,25 @@
         this.images = this.parseImages(localStorage.getItem('gifboard_images'));
     };
 
-    Board.prototype.renderImages = function(images) {
+    Board.prototype.renderImages = function(images, self) {
         if(!images.length) {
             return console.log('no images to be displayed!');
         }
-        if(this.childIndex !== false) {
-            this.childIndex++;
-            if(this.childIndex >= images.length) {
-                this.childIndex = 0;
+        if(self.childIndex !== false) {
+            self.childIndex++;
+            if(self.childIndex >= images.length) {
+                self.childIndex = 0;
             }
         } else {
-            this.childIndex = this.randomInt(0, images.length - 1);
+            self.childIndex = self.randomInt(0, images.length - 1);
         }
-        this.fatherIndex = this.childIndex + 1;
-        if(this.fatherIndex >= images.length) {
-            this.fatherIndex = 0;
+        self.fatherIndex = self.childIndex + 1;
+        if(self.fatherIndex >= images.length) {
+            self.fatherIndex = 0;
         }
 
-        this.child.css('background-image', 'url(' + images[this.childIndex] + ')');
-        this.father.css('background-image', 'url(' + images[this.fatherIndex] + ')');
+        self.child.css('background-image', 'url(' + images[self.childIndex] + ')');
+        self.father.css('background-image', 'url(' + images[self.fatherIndex] + ')');
     };
 
     Board.prototype.randomInt = function(min, max) {
