@@ -16,7 +16,7 @@ script:
 - make test-travis
 after_success:
 - make coveralls
-- rvm install 1.9.3-p551
+- make deploy-ready
 deploy:
   skip_cleanup: true
   provider: heroku
