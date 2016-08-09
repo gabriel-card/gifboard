@@ -18,8 +18,16 @@
     };
 
     Board.prototype.renderImages = function(images) {
-        this.childIndex = this.randomInt(0, images.length - 1);
+        if(this.childIndex !== false) {
+            this.childIndex++;
+            if(this.childIndex >= images.length) {
+                this.childIndex = 0;
+            }
+        } else {
+            this.childIndex = this.randomInt(0, images.length - 1);
+        }
         this.fatherIndex = this.childIndex + 1;
+
         if(this.fatherIndex >= images.length) {
             this.fatherIndex = 0;
         }

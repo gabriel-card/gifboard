@@ -58,6 +58,36 @@ describe('Board', function() {
             expect(this.board.father.css).toHaveBeenCalled();
         });
 
+        it('should set new indexes if they doesnt exist yet', function() {
+            this.board.childIndex = false;
+            this.board.fatherIndex = false;
+            spyOn(this.board, 'randomInt');
+            this.board.renderImages(this.gifsJson);
+
+            expect(this.board.randomInt).toHaveBeenCalled();
+        });
+
+        it('should increment 1 if there is already an index set', function() {
+            this.board.childIndex = 0;
+            this.board.fatherIndex = 1;
+            spyOn(this.board, 'randomInt');
+            this.board.renderImages(this.gifsJson);
+
+            expect(this.board.randomInt).not.toHaveBeenCalled();
+            expect(this.board.childIndex).toBe(1);
+            expect(this.board.fatherIndex).toBe(0);
+        });
+
+        it('should set childIndex to 0 if childIndex is equal or greater than list length', function() {
+            this.board.childIndex = 1;
+            spyOn(this.board, 'randomInt');
+            this.board.renderImages(this.gifsJson);
+
+            expect(this.board.randomInt).not.toHaveBeenCalled();
+            expect(this.board.childIndex).toBe(0);
+            expect(this.board.fatherIndex).toBe(1);
+        });
+
         it('should never have fatherIndex and childIndex as the same int', function() {
             this.board.renderImages(this.gifsJson);
             expect(this.board.childIndex).not.toEqual(this.board.fatherIndex);
