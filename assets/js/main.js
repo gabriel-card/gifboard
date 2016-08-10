@@ -57,7 +57,7 @@
         this.images = [];
         this.childIndex = false;
         this.fatherIndex = false;
-        this.config = { animationInterval: 4000 };
+        this.config = { animationInterval: 8000 };
     }
 
     Board.prototype.init = function() {
@@ -109,6 +109,6 @@ var main = function() {
     var board = new Board($('section.board'));
     board.init();
     var imgFetch = new ImageFetcher(board);
-    setInterval(fetchInit, 3000, imgFetch);
+    setInterval(fetchInit, 30000, imgFetch);
 };
 $(main);

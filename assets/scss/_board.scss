@@ -11,19 +11,14 @@ section.board {
     position: absolute;
     top: 0;
     left: 0;
-    @include transition-property(opacity, visibility);
+    @include transition-property(background-image);
     @include transition-duration(0.5s);
   }
   div.image--father {
+    display: none;
     z-index: 1;
   }
   div.image--child {
-    opacity: 0;
-    visibility: hidden;
     z-index: 2;
   }
-}
-.visible {
-  opacity: 1;
-  visibility: visible;
 }

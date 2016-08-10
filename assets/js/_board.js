@@ -7,7 +7,7 @@
         this.images = [];
         this.childIndex = false;
         this.fatherIndex = false;
-        this.config = { animationInterval: 4000 };
+        this.config = { animationInterval: 8000 };
     }
 
     Board.prototype.init = function() {

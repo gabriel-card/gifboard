@@ -44,7 +44,7 @@ describe('Board', function() {
         it('should print to console if there is no image list', function() {
             spyOn(console, 'log');
             spyOn(this.board.child, 'css');
-            this.board.renderImages([]);
+            this.board.renderImages([], this.board);
 
             expect(this.board.child.css).not.toHaveBeenCalled();
             expect(console.log).toHaveBeenCalled();
