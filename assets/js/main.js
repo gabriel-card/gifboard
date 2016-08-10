@@ -75,6 +75,7 @@
     };
 
     Board.prototype.renderImages = function(images, self) {
+        self.updateImages();
         if(!images.length) {
             return console.log('no images to be displayed!');
         }
