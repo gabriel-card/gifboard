@@ -19,6 +19,7 @@ describe('Board', function() {
         it('should get images from localStorage and call parseImages with it as arg then pass to renderImages inside setInterval', function(){
             var self = this;
             spyOn(this.board, 'parseImages');
+            spyOn(this.board, 'renderImages');
             spyOn(window, 'setInterval');
             spyOn(localStorage, 'getItem').and.callFake(function() {
                 return JSON.stringify(self.gifsJson);

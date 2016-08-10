@@ -62,8 +62,8 @@
 
     Board.prototype.init = function() {
         this.updateImages();
-        var self = this;
-        setInterval(this.renderImages, this.config.animationInterval, this.images, self);
+        this.renderImages(this.images, this);
+        setInterval(this.renderImages, this.config.animationInterval, this.images, this);
     };
 
     Board.prototype.parseImages = function(stringImages) {
@@ -109,6 +109,7 @@ var main = function() {
     var board = new Board($('section.board'));
     board.init();
     var imgFetch = new ImageFetcher(board);
+    fetchInit(imgFetch);
     setInterval(fetchInit, 30000, imgFetch);
 };
 $(main);

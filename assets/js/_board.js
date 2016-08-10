@@ -12,8 +12,8 @@
 
     Board.prototype.init = function() {
         this.updateImages();
-        var self = this;
-        setInterval(this.renderImages, this.config.animationInterval, this.images, self);
+        this.renderImages(this.images, this);
+        setInterval(this.renderImages, this.config.animationInterval, this.images, this);
     };
 
     Board.prototype.parseImages = function(stringImages) {
