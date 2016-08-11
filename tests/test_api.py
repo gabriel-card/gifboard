@@ -2,7 +2,7 @@
 import unittest
 import mock
 from sqlalchemy import create_engine
-from uploader.client import upload_img_from_url, save_url
+from uploader.client import upload_img_from_url, save_url, normalize_url
 from core.appserver import app
 from core.database import db_session, Base
 from core.models import Image
@@ -33,7 +33,7 @@ class ApiTestCase(unittest.TestCase):
     def test_upload_image_from_url(self):
         '''Should return dict with uploaded image url.'''
         cb = upload_img_from_url(u'http://validurl.com/image.gif')
-        expected = {u'link': u'http://i.imgur.com/image.gif'}
+        expected = {u'link': u'https://i.imgur.com/image.gif'}
 
         self.assertEqual(cb['link'], expected['link'])
 
@@ -47,3 +47,12 @@ class ApiTestCase(unittest.TestCase):
         url = Image.query.all()[0].link.url
 
         self.assertIn(expected, url)
+
+    def test_normalize_url(self):
+        '''Should return an image url with HTTPS protocol'''
+        image_url = u'http://i.imgur.com/image.gif'
+        expected = 'https://i.imgur.com/image.gif'
+
+        normalized_url = normalize_url(image_url)
+
+        self.assertEqual(normalized_url, expected)

@@ -9,8 +9,13 @@ def upload_img_from_url(url):
     imgur_api = ImgurClient(app.config['CLIENT_ID'],
                             app.config['CLIENT_SECRET'])
     resp = imgur_api.upload_from_url(url)
+    resp['link'] = normalize_url(resp['link'])
 
     return {u'link': resp['link']}
+
+
+def normalize_url(url):
+    return url[:4] + 's' + url[4:]
 
 
 def save_url(img_dict):
