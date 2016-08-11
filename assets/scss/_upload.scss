@@ -4,8 +4,44 @@ section.upload {
   @include align-items(center);
   width: 100%;
   height: 100%;
+  background-color: linen;
 
   div.upload__item {
+    form {
+      @include display-flex;
+    }
 
+    input {
+      padding: 0.25rem 1em;
+      border-radius: 7px;
+      outline: none;
+
+      &.textfield {
+        font-size: 1.5rem;
+        height: 3rem;
+        width: 30rem;
+        border: solid thin darkgrey;
+        color: darkslategrey;
+        background-color: floralwhite;
+        font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      }
+
+      &.button {
+        width: 3rem;
+        height: 3.1rem;
+        background-color: $pink;
+        border: none;
+        font-size: 1rem;
+        color: floralwhite;
+        margin-left: 0.5rem;
+        box-sizing: content-box;
+        font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+        @include user-select(none);
+        &:hover {
+          cursor: pointer;
+          background-color: $pink-hover;
+        }
+      }
+    }
   }
 }
