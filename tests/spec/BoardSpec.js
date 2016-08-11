@@ -28,7 +28,7 @@ describe('Board', function() {
 
             expect(localStorage.getItem).toHaveBeenCalled();
             expect(this.board.parseImages).toHaveBeenCalledWith(localStorage.getItem());
-            expect(window.setInterval).toHaveBeenCalledWith(this.board.renderImages, this.board.config.animationInterval, this.board.images, this.board);
+            expect(window.setInterval).toHaveBeenCalledWith(this.board.renderImages, this.board.config.animationInterval, this.board);
         });
     });
 
@@ -42,10 +42,16 @@ describe('Board', function() {
     });
 
     describe('renderImages', function() {
+        beforeEach(function() {
+            spyOn(this.board, 'updateImages').and.callFake(function() {
+                return true;
+            });
+        });
         it('should print to console if there is no image list', function() {
+            this.board.images = [];
             spyOn(console, 'log');
             spyOn(this.board.child, 'css');
-            this.board.renderImages([], this.board);
+            this.board.renderImages(this.board);
 
             expect(this.board.child.css).not.toHaveBeenCalled();
             expect(console.log).toHaveBeenCalled();
@@ -53,7 +59,8 @@ describe('Board', function() {
         it('should set div.image--child background-image', function() {
             spyOn(this.board, 'randomInt');
             spyOn(this.board.child, 'css');
-            this.board.renderImages(this.gifsJson, this.board);
+            this.board.images = this.gifsJson;
+            this.board.renderImages(this.board);
 
             expect(this.board.randomInt).toHaveBeenCalled();
             expect(this.board.child.css).toHaveBeenCalled();
@@ -61,7 +68,8 @@ describe('Board', function() {
         it('should set div.image--father background-image', function() {
             spyOn(this.board, 'randomInt');
             spyOn(this.board.father, 'css');
-            this.board.renderImages(this.gifsJson, this.board);
+            this.board.images = this.gifsJson;
+            this.board.renderImages(this.board);
 
             expect(this.board.randomInt).toHaveBeenCalled();
             expect(this.board.father.css).toHaveBeenCalled();
@@ -70,8 +78,9 @@ describe('Board', function() {
         it('should set new indexes if they doesnt exist yet', function() {
             this.board.childIndex = false;
             this.board.fatherIndex = false;
+            this.board.images = this.gifsJson;
             spyOn(this.board, 'randomInt');
-            this.board.renderImages(this.gifsJson, this.board);
+            this.board.renderImages(this.board);
 
             expect(this.board.randomInt).toHaveBeenCalled();
         });
@@ -79,8 +88,9 @@ describe('Board', function() {
         it('should increment 1 if there is already an index set', function() {
             this.board.childIndex = 0;
             this.board.fatherIndex = 1;
+            this.board.images = this.gifsJson;
             spyOn(this.board, 'randomInt');
-            this.board.renderImages(this.gifsJson, this.board);
+            this.board.renderImages(this.board);
 
             expect(this.board.randomInt).not.toHaveBeenCalled();
             expect(this.board.childIndex).toBe(1);
@@ -90,7 +100,8 @@ describe('Board', function() {
         it('should set childIndex to 0 if childIndex is equal or greater than list length', function() {
             this.board.childIndex = 1;
             spyOn(this.board, 'randomInt');
-            this.board.renderImages(this.gifsJson, this.board);
+            this.board.images = this.gifsJson;
+            this.board.renderImages(this.board);
 
             expect(this.board.randomInt).not.toHaveBeenCalled();
             expect(this.board.childIndex).toBe(0);
@@ -98,15 +109,17 @@ describe('Board', function() {
         });
 
         it('should never have fatherIndex and childIndex as the same int', function() {
-            this.board.renderImages(this.gifsJson, this.board);
+            this.board.images = this.gifsJson;
+            this.board.renderImages(this.board);
             expect(this.board.childIndex).not.toEqual(this.board.fatherIndex);
         });
 
         it("should set fatherIndex to 0 if it's equal or higher than image list length", function() {
+            this.board.images = this.gifsJson;
             spyOn(this.board, 'randomInt').and.callFake(function() {
                 return 1; // image list length = 2
             });
-            this.board.renderImages(this.gifsJson, this.board);
+            this.board.renderImages(this.board);
             expect(this.board.fatherIndex).toBe(0);
         });
     });

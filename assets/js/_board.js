@@ -13,7 +13,7 @@
     Board.prototype.init = function() {
         this.updateImages();
         this.renderImages(this.images, this);
-        setInterval(this.renderImages, this.config.animationInterval, this.images, this);
+        setInterval(this.renderImages, this.config.animationInterval, this);
     };
 
     Board.prototype.parseImages = function(stringImages) {
@@ -24,8 +24,9 @@
         this.images = this.parseImages(localStorage.getItem('gifboard_images'));
     };
 
-    Board.prototype.renderImages = function(images, self) {
+    Board.prototype.renderImages = function(self) {
         self.updateImages();
+        images = self.images;
         if(!images.length) {
             return console.log('no images to be displayed!');
         }
